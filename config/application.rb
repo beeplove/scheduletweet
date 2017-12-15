@@ -16,6 +16,9 @@ require "sprockets/railtie"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+# Load ENV from .env if exist
+Dotenv::Railtie.load
+
 module Scheduletweet
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
