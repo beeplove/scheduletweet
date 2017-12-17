@@ -10,7 +10,7 @@
 
   <body>
     <div>
-      <% if current_user %>
+      <% if authenticated? %>
         <span><%= current_user.name %><span>
         <span>&nbsp;|&nbsp;</span>
         <span>
