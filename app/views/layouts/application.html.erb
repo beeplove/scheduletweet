@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Scheduletweet</title>
+    <title>Schedule a Tweet</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -9,6 +9,20 @@
   </head>
 
   <body>
+    <div>
+      <% if current_user %>
+        <span><%= current_user.name %><span>
+        <span>&nbsp;|&nbsp;</span>
+        <span>
+          <%= link_to "Sign out", signout_path, :method => :delete %>
+        </span>
+      <% else %>
+        <span>
+          <%= link_to "Twitter Sign in", "/auth/twitter" %>
+        </span>
+      <% end %>
+    <div>
+
     <%= yield %>
   </body>
 </html>

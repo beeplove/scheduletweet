@@ -6,5 +6,5 @@ Rails.application.routes.draw do
   end
 
   match 'auth/twitter/callback', to: 'sessions#create', via: [:get]
-
+  match 'signout', to: 'sessions#destroy', via: [:delete]
 end
