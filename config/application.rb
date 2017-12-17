@@ -17,7 +17,7 @@ require "sprockets/railtie"
 Bundler.require(*Rails.groups)
 
 # Load ENV from .env if exist
-Dotenv::Railtie.load
+Dotenv::Railtie.load if ! Rails.env.production?
 
 module Scheduletweet
   class Application < Rails::Application
