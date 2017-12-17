@@ -1,6 +1,13 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
+  def authenticate
+    if ! authenticated?
+      redirect_to root_path
+    end
+  end
+  private :authenticate
+  helper_method :authenticate
 
   def authenticated?
     !!current_user
