@@ -7,4 +7,6 @@ Rails.application.routes.draw do
 
   match 'auth/twitter/callback', to: 'sessions#create', via: [:get]
   match 'signout', to: 'sessions#destroy', via: [:delete]
+
+  root to: "home#index"
 end
