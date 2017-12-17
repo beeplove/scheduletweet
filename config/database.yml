@@ -48,7 +48,5 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
-  database: scheduletweet_production
-  username: scheduletweet
-  password: <%= ENV['SCHEDULETWEET_DATABASE_PASSWORD'] %>
+  url: <%= ENV['JAWSDB_URL'] %>
+
