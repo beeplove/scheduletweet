@@ -9,6 +9,12 @@
   </head>
 
   <body>
+    <% if flash[:error] %>
+      <div>
+        <%= flash[:error] %>
+      </div>
+    <% end %>
+
     <div>
       <% if authenticated? %>
         <span><%= current_user.name %><span>
@@ -21,6 +27,7 @@
           <%= link_to "Twitter Sign in", "/auth/twitter" %>
         </span>
       <% end %>
+
     <div>
 
     <%= yield %>
