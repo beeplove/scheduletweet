@@ -3,6 +3,8 @@
 
 $(function () {
   $('#picker-scheduled-at').datetimepicker({
+    minDate: moment(),
+    maxDate: moment().add(30, 'days'),
     format: 'MM/DD/YYYY hh:mm A ZZ'
   });
 });
