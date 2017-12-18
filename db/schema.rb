@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171216233736) do
+ActiveRecord::Schema.define(version: 20171218060610) do
 
   create_table "tweets", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.bigint "user_id"
@@ -25,6 +25,8 @@ ActiveRecord::Schema.define(version: 20171216233736) do
     t.string "provider"
     t.string "uid"
     t.string "name"
+    t.string "token"
+    t.string "secret"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
