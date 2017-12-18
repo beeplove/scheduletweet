@@ -12,13 +12,13 @@
   <body>
     <div class="container-fluid">
       <% if flash[:error] %>
-        <div>
+        <div class="error">
           <%= flash[:error] %>
         </div>
       <% end %>
 
       <% if flash[:notice] %>
-        <div>
+        <div class="notice">
           <%= flash[:notice] %>
         </div>
       <% end %>

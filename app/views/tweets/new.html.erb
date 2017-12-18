@@ -4,19 +4,16 @@
       <%= f.label :tweet %>
     </div>
     <div>
-      <%#= f.text_field :tweet, placeholder: "Write your tweet here"%>
       <%= f.text_area :tweet, :class => "form-control", :rows => 3 %>
     </div>
   </div>
 
-  <div class="input-group date form-group" id='picker-scheduled-at'>
+  <div class="form-group">
     <div>
       <%= f.label :scheduled_at %>
     </div>
-    <div>
-      <span>
-        <%= f.text_field :scheduled_at, :class => "form-control" %>
-      </span>
+    <div class="input-group date" id='picker-scheduled-at'>
+      <%= f.text_field :scheduled_at, :class => "form-control" %>
       <span class="input-group-addon">
         <span class="glyphicon glyphicon-calendar"></span>
       </span>
