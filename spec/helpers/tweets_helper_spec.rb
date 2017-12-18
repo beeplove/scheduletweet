@@ -10,6 +10,23 @@ require 'rails_helper'
 #     end
 #   end
 # end
+
+
 RSpec.describe TweetsHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "tweet_url" do
+    it "returns url for the tweeter post" do
+      tweet = double("Tweet")
+      allow(tweet).to receive_message_chain(:user, :uid) { "1234" }
+      allow(tweet).to receive(:tid) { "1234567890" }
+
+      expect(tweet_url(tweet)).to eq("https://twitter.com/1234/status/1234567890")
+    end
+  end
+
+  describe "convert_to_datetime" do
+    it "returns a datetime object" do
+      scheduled_at = "12/18/2017 10:43 AM -0800"
+      expect(convert_to_datetime(scheduled_at)).to eq("Mon, 18 Dec 2017 10:43:00 -0800")
+    end
+  end
 end
