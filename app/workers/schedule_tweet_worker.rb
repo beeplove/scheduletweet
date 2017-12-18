@@ -14,6 +14,8 @@ class ScheduleTweetWorker
       config.access_token_secret = tweet.user.secret
     end
 
-    client.update(tweet.tweet)
+    t = client.update(tweet.tweet)
+    tweet.tid = t.id
+    tweet.save!
   end
 end
