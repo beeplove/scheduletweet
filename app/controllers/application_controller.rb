@@ -17,6 +17,7 @@ class ApplicationController < ActionController::Base
   helper_method :authenticated?
 
 
+  # TODO: need to cover the scenario: in case of corrupted session, it might be out of sync with database
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
