@@ -15,6 +15,12 @@
       </div>
     <% end %>
 
+    <% if flash[:notice] %>
+      <div>
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+
     <div>
       <% if authenticated? %>
         <span><%= current_user.name %><span>

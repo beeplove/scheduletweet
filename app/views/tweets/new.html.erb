@@ -15,3 +15,17 @@
   </div>
 
 <% end %>
+
+<%
+# TODO: move to tweet.js, temporarily here because picker is not respondig on first load, on repeat load it works,
+#       need to further investigate
+%>
+<script type="text/javascript">
+  $(function () {
+    $('#picker-scheduled-at').datetimepicker({
+      minDate: moment(),
+      maxDate: moment().add(30, 'days'),
+      format: 'MM/DD/YYYY hh:mm A ZZ'
+    });
+  });
+</script>
