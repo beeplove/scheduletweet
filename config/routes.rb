@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   mount Sidekiq::Web => '/sidekiq'
 
   resources :users, only: [] do
-    resources :tweets
+    resources :tweets, only: [:index, :new, :create]
   end
 
   match 'auth/twitter/callback', to: 'sessions#create', via: [:get]
