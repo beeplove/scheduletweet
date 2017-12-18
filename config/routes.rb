@@ -3,9 +3,7 @@ Rails.application.routes.draw do
 
   # TODO: add production with authentication
   require 'sidekiq/web'
-  if ! Rails.env.production?
-    mount Sidekiq::Web => '/sidekiq'
-  end
+  mount Sidekiq::Web => '/sidekiq'
 
   resources :users, only: [] do
     resources :tweets
