@@ -4,6 +4,7 @@ class TweetsController < ApplicationController
   before_action :authenticate
 
   def index
+    @tweets = current_user.tweets
   end
 
   def new
