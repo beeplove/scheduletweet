@@ -11,18 +11,6 @@
 
   <body>
     <div class="container-fluid">
-      <% if flash[:error] %>
-        <div class="bg-danger">
-          <%= flash[:error] %>
-        </div>
-      <% end %>
-
-      <% if flash[:notice] %>
-        <div class=bg-success>
-          <%= flash[:notice] %>
-        </div>
-      <% end %>
-
       <div class="text-right">
         <% if authenticated? %>
           <span><%= current_user.name %><span>
@@ -35,9 +23,23 @@
             <%= link_to "Twitter Sign in", "/auth/twitter" %>
           </span>
         <% end %>
+        <div>&nbsp;</div>
       </div>
 
-      <div>&nbsp;</div>
+
+      <% if flash[:error] %>
+        <div class="bg-danger text-center">
+          <%= flash[:error] %>
+        </div>
+        <div>&nbsp;</div>
+      <% end %>
+
+      <% if flash[:notice] %>
+        <div class="bg-success text-center">
+          <%= flash[:notice] %>
+        </div>
+        <div>&nbsp;</div>
+      <% end %>
 
       <%= yield %>
     </div>

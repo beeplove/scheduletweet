@@ -1,3 +1,6 @@
+
+# TODO: Post cat image using http://www.rubydoc.info/gems/twitter/Twitter%2FREST%2FTweets%3Aupdate_with_media
+
 class TweetsController < ApplicationController
   include TweetsHelper
 
