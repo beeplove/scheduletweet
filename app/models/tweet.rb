@@ -11,7 +11,7 @@ class Tweet < ApplicationRecord
   def validates_scheduled_at_in_future_time
     if scheduled_at.nil?
       errors.add(:scheduled_at, "Scheduled time can't be empty")
-    elsif Time.now > scheduled_at
+    elsif id.nil? && Time.now > scheduled_at
       errors.add(:scheduled_at, "Scheduled at can't be in past")
     end
   end
