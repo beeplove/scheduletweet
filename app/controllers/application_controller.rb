@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   def authenticate
     if ! authenticated?
-      flash[:error] = "Please login to access that page"
+      flash[:alert] = "Please login to access that page"
       redirect_to root_path
     end
   end
