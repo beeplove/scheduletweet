@@ -5,6 +5,7 @@ class ScheduleTweetWorker
 
   def perform(tweet_id)
     tweet = Tweet.find(tweet_id)
+    return if tweet.tid
 
     # TODO: Refactor by moving this chunk of code, this doesn't belong here.
     client = Twitter::REST::Client.new do |config|
@@ -17,5 +18,8 @@ class ScheduleTweetWorker
     t = client.update(tweet.tweet)
     tweet.tid = t.id
     tweet.save!
+
+    tweet
   end
+
 end
