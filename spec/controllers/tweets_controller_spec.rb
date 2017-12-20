@@ -91,6 +91,12 @@ RSpec.describe TweetsController, type: :controller do
 
         expect(response).to redirect_to user_tweets_path(@user)
       end
+
+      it "fails when tweet scheduled time is empty"
+      it "fails when tweet scheduled time is set to a past date"
+      it "fails when tweet scheduled time is not fomatted correctly"
+      it "fails when text length is longer than it should be"
+      it "fails when test is empty"
     end
   end
 
