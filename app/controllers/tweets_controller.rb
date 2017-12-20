@@ -16,7 +16,9 @@ class TweetsController < ApplicationController
 
   def create
     @tweet = Tweet.new(permitted_params)
+
     @tweet.scheduled_at = convert_to_datetime(params[:tweet][:scheduled_at])
+
     @tweet.user = current_user
 
     if @tweet.save
@@ -31,7 +33,7 @@ class TweetsController < ApplicationController
   end
 
   def permitted_params
-    params.require(:tweet).permit(:tweet)
+    params.require(:tweet).permit(:tweet, :scheduled_at)
   end
   private :permitted_params
 

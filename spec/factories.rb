@@ -10,6 +10,8 @@ FactoryBot.define do
 
   factory :tweet do
     user
+    tweet "Hello World!"
+    scheduled_at "#{1.day.from_now.strftime('%m/%d/%Y %I:%M %p %z')}"
   end
 
 end
