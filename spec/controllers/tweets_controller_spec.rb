@@ -130,7 +130,6 @@ RSpec.describe TweetsController, type: :controller do
         expect(controller).to render_template("new")
         expect(flash[:alert]).to be_present
         expect(flash[:notice]).to be_blank
-
       end
     end
   end
