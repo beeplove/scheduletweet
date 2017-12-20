@@ -5,6 +5,7 @@ class Tweet < ApplicationRecord
   validates :tweet, length: { maximum: 280, message: "Tweet can't be more than 280 characters" }
   validate  :scheduled_at, :validates_scheduled_at_in_future_time
 
+  TWEET_MAX_LENGTH = 280
 
   def validates_scheduled_at_in_future_time
     if scheduled_at.nil?

@@ -90,14 +90,48 @@ RSpec.describe TweetsController, type: :controller do
         post :create, params: { user_id: user.id, tweet: { tweet: "Hello World!", scheduled_at: nil } }
 
         expect(controller).to render_template("new")
-        # expect(flash[:alert]).to be_present
-        # expect(flash[:notice]).to be_blank
+        expect(flash[:alert]).to be_present
+        expect(flash[:notice]).to be_blank
       end
 
-      it "fails when tweet scheduled time is set to a past date"
-      it "fails when tweet scheduled time is not fomatted correctly"
-      it "fails when text length is longer than it should be"
-      it "fails when test is empty"
+      it "fails when tweet scheduled time is set to a past date" do
+        date = 1.day.ago.strftime("%m/%d/%Y")
+        post :create, params: { user_id: user.id, tweet: { tweet: "Hello World!", scheduled_at: "#{date} 04:22 PM -0800" } }
+
+        expect(controller).to render_template("new")
+        expect(flash[:alert]).to be_present
+        expect(flash[:notice]).to be_blank
+      end
+
+      it "fails when tweet scheduled time is not fomatted correctly" do
+        post :create, params: { user_id: user.id, tweet: { tweet: "Hello World!", scheduled_at: "bogus" } }
+
+        expect(controller).to render_template("new")
+        expect(flash[:alert]).to be_present
+        expect(flash[:notice]).to be_blank
+      end
+
+      it "fails when text length is longer than it should be" do
+        long_text = Forgery::LoremIpsum.paragraphs(5)
+        expect(long_text.length).to be > Tweet::TWEET_MAX_LENGTH
+
+        date = 1.day.ago.strftime("%m/%d/%Y")
+        post :create, params: { user_id: user.id, tweet: { tweet: long_text, scheduled_at: "#{date} 04:22 PM -0800" } }
+
+        expect(controller).to render_template("new")
+        expect(flash[:alert]).to be_present
+        expect(flash[:notice]).to be_blank
+      end
+
+      it "fails when tweet is empty" do
+        date = 1.day.ago.strftime("%m/%d/%Y")
+        post :create, params: { user_id: user.id, tweet: { tweet: "", scheduled_at: "#{date} 04:22 PM -0800" } }
+
+        expect(controller).to render_template("new")
+        expect(flash[:alert]).to be_present
+        expect(flash[:notice]).to be_blank
+
+      end
     end
   end
 

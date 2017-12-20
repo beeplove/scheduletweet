@@ -27,6 +27,7 @@ class TweetsController < ApplicationController
       flash[:notice] = "Tweet scheduled successfully!"
       redirect_to user_tweets_path(current_user)
     else
+      flash[:alert] = "Failed to schedule Tweet"
       render "new"
     end
 
