@@ -7,6 +7,7 @@ class Tweet < ApplicationRecord
   validates :tweet, length: { maximum: TWEET_MAX_LENGTH, message: "Tweet can't be more than #{TWEET_MAX_LENGTH} characters" }
   validate  :scheduled_at, :validates_scheduled_at_in_future_time
 
+  after_create :schedule
 
   def validates_scheduled_at_in_future_time
     if scheduled_at.nil?
@@ -14,5 +15,9 @@ class Tweet < ApplicationRecord
     elsif id.nil? && Time.now > scheduled_at
       errors.add(:scheduled_at, "Scheduled at can't be in past")
     end
+  end
+
+  def schedule
+    ScheduleTweetWorker.perform_at((scheduled_at - Time.now).seconds, id)
   end
 end

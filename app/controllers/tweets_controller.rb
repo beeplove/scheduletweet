@@ -22,8 +22,6 @@ class TweetsController < ApplicationController
     @tweet.user = current_user
 
     if @tweet.save
-      after = @tweet.scheduled_at - Time.now
-      ScheduleTweetWorker.perform_at(after.seconds, @tweet.id)
       flash[:notice] = "Tweet scheduled successfully!"
       redirect_to user_tweets_path(current_user)
     else
