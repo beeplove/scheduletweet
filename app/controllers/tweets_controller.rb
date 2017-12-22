@@ -15,13 +15,11 @@ class TweetsController < ApplicationController
   end
 
   def create
-    @tweet = Tweet.new(permitted_params)
-
+    @tweet = Tweet.new
     @tweet.scheduled_at = convert_to_datetime(params[:tweet][:scheduled_at])
-
     @tweet.user = current_user
 
-    if @tweet.save
+    if @tweet.update_attributes(permitted_params)
       flash[:notice] = "Tweet scheduled successfully!"
       redirect_to user_tweets_path(current_user)
     else
@@ -32,7 +30,7 @@ class TweetsController < ApplicationController
   end
 
   def permitted_params
-    params.require(:tweet).permit(:tweet, :scheduled_at)
+    params.require(:tweet).permit(:tweet)
   end
   private :permitted_params
 
