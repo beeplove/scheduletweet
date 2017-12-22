@@ -1,5 +1,3 @@
-gem 'twitter'
-
 class ScheduleTweetWorker
   include Sidekiq::Worker
 
